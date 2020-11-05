@@ -263,10 +263,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-10-27 09:58:35 / 修改时间：11:13:14" itemprop="dateCreated datePublished" datetime="2020-10-27T09:58:35+08:00">2020-10-27</time>
+              <time title="创建时间：2020-10-27 09:58:35" itemprop="dateCreated datePublished" datetime="2020-10-27T09:58:35+08:00">2020-10-27</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-05 21:26:02" itemprop="dateModified" datetime="2020-11-05T21:26:02+08:00">2020-11-05</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -274,7 +280,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>352</span>
+              <span>612</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -296,8 +302,13 @@
           <h1 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h1><p> <strong>1.指针与指针变量</strong><br>    1. 一个变量的内存地址称为该变量”指针”.<br>    2.指针变量：表示某个地址的变量<br><strong>2.指针变量</strong><br>1.定义形式：数据类型 *变量名(标识符)；</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> * p =&amp;a;</span><br><span class="line">=</span><br><span class="line"><span class="keyword">float</span> *p; p=&amp;a;</span><br></pre></td></tr></table></figure>
 <p>p指向a.<br><strong>3.指针专门运算符</strong><br>&amp;，*<br>a.&amp;+基本变量(元素):=&gt;地址<br>b.*+指针(地址)=&gt;取地址元素值<br>(注:*后面指针变量一定为赋过值的指针变量)</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">6</span>, b=<span class="number">2</span>, *p=&amp;a;</span><br><span class="line">p=&amp;b; *p+=<span class="number">3</span>;</span><br><span class="line">print(<span class="string">&quot;%d,%d&quot;</span>,a,b);</span><br><span class="line">print(<span class="string">&quot;%d&quot;</span>,*p);</span><br><span class="line">---------------------</span><br><span class="line">a=<span class="number">6</span> b=<span class="number">5</span></span><br><span class="line">*p=<span class="number">5</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">6</span>, b=<span class="number">2</span>, *p=&amp;a;</span><br><span class="line">p=&amp;b; *p+=<span class="number">3</span>;</span><br><span class="line">print(<span class="string">&quot;%d,%d&quot;</span>,a,b);</span><br><span class="line">print(<span class="string">&quot;%d&quot;</span>,*p);</span><br><span class="line">---------------------</span><br><span class="line">a=<span class="number">6</span> b=<span class="number">5</span></span><br><span class="line">*p=<span class="number">5</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>###2.数组的指针<br>C规定：数组名代表数组的首地址</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>],*p;</span><br><span class="line">p=a;与p=&amp;a[<span class="number">0</span>];等价 指针元素指向数组元素a[<span class="number">0</span>]。</span><br><span class="line">p+i,a+i和&amp;a[i]都是元素a[i]的地址。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h6 id="第六章-结构体与共用体"><a href="#第六章-结构体与共用体" class="headerlink" title="第六章 结构体与共用体"></a>第六章 结构体与共用体</h6><p>1.结构体类型<br>struct 结构体类型名<br>{<br>    数据类型  成员1；<br>    数据类型  成员2；<br>}；<br>2.结构体定义三种不同的方法:<br> 2.1.先定义结构体类型，在定义结构体类型的变量<br> 2.2在定义结构体类型的同时定义结构体变量<br> 2.3直接定义结构体类型变量</p>
+<p> 结构体类型变量不能整体出入和输出， 不可以把常量赋值给变量。<br> 结构体变量之间可以赋值。<br> 结构体类型长度：各成员项长度之和。</p>
 
       
     </div>
