@@ -28,7 +28,7 @@
 <meta property="og:description" content="1.数据库原理概念1234数据：能用电脑表示的信息的符号记录称为数据 简称D(Data)数据库: 储存在计算机内有组织可共享的数据集合称为数据库 简称DB(Data Base)数据库管理系统: 用户和操作系统之间的一层数据管理软件 简称DBMS数据库系统: 数据库，数据库管理系统，数据库管理员构成 简称DBS DBS发展阶段：11.手工管理阶段2.文件系统阶段3.数据库系统阶段 数据库体系结构：1">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-19T02:43:51.000Z">
-<meta property="article:modified_time" content="2021-04-12T00:49:44.413Z">
+<meta property="article:modified_time" content="2021-07-13T07:52:41.257Z">
 <meta property="article:author" content="fengfeng">
 <meta property="article:tag" content="Mysql">
 <meta name="twitter:card" content="summary">
@@ -192,7 +192,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-12 08:49:44" itemprop="dateModified" datetime="2021-04-12T08:49:44+08:00">2021-04-12</time>
+                <time title="修改时间：2021-07-13 15:52:41" itemprop="dateModified" datetime="2021-07-13T15:52:41+08:00">2021-07-13</time>
               </span>
 
           
@@ -208,7 +208,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.7k</span>
+              <span>1.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -233,14 +233,7 @@
 <h4 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">1.数据模型三要素: 数据结构，数据操作，数据的约束条件</span><br><span class="line">概念模型：</span><br><span class="line">实体：客观存在的且相互区别的事务</span><br><span class="line">属性：实体所具有的特性</span><br><span class="line">码：唯一标识实体的属性</span><br><span class="line">实体集：相同属性实体的集合</span><br><span class="line">联系：一对一(1:1) 一对多(1:n) 多对多(m:n)</span><br><span class="line"></span><br><span class="line">关系模型:</span><br><span class="line">1.关系模型的基本术语: 关系(一张规范的二维表),记录(元组)，字段(属性)</span><br><span class="line">主关键字(主码),全码，外码，域，分量。</span><br><span class="line">**2.数据完整性**</span><br><span class="line">1.实体完整性:主码非空且唯一</span><br><span class="line">2.参照完整性:关系中外码引用及使用规则</span><br><span class="line">3.用户自定义完整性：每个属性取值范围进行约束</span><br><span class="line">**关系运算**</span><br><span class="line">传统关系运算: 并，交，差，笛卡尔积</span><br><span class="line">专门关系运算：选择，投影，连接，除法。</span><br><span class="line">选择：找出满足条件的记录(行)</span><br><span class="line">投影：找到满足条件的属性(列)</span><br><span class="line">连接: 按照相同的字段把两个或三个表相连</span><br><span class="line">**关系模式的范式与规范化**</span><br><span class="line">第1范式：基本的关系都属于第一范式</span><br><span class="line">第2范式：在第一范式的基础上，消除部份依赖，构成第二范式</span><br><span class="line">第3范式：在第二范式的基础上，消除传递依赖，构成第三范式</span><br><span class="line">**数据库设计的6个基本步骤**</span><br><span class="line">1.需求分析</span><br><span class="line">2.概念结构设计  E-R图</span><br><span class="line">3.逻辑结构设计  E-R图=&gt;关系模型</span><br><span class="line">4.物理结构设计</span><br><span class="line">5.数据库实现</span><br><span class="line">6.运行与维护</span><br></pre></td></tr></table></figure>
 <h5 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h5><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">第一范式(<span class="number">1</span>NF):</span><br><span class="line">即表的列具有原子性，不可再分割，即列的信息，不能分解，</span><br><span class="line">只要数据库是关系型数据库(mysql/oracle/db2/</span><br><span class="line">informix/sysbase/sql server)</span><br><span class="line">就自动的满足<span class="number">1</span>NF。</span><br><span class="line">数据库表的每一列都是不可分割的原子数据项，</span><br><span class="line">而不能是集合，数组，记录等非原子数据项,如果实体中的某个属性有多个值时，</span><br><span class="line">必须拆分为不同的属性 。</span><br><span class="line">通俗理解即一个字段只存储一项信息。</span><br><span class="line">第二范式(<span class="number">2</span>NF)</span><br><span class="line">第二范式是在第一范式的基础上建立起来的，即满足第二范式一定满足第一范式。</span><br><span class="line">第二范式要求数据库表中的每个实例或行必须可以被唯一区分。</span><br><span class="line">为实现区分通常需要我们设计一个主键来实现(这里的主键不包含业务逻辑)。</span><br><span class="line">即满足第一范式前提，当存在多个主键的时候，</span><br><span class="line">才会发生不符合第二范式的情况。</span><br><span class="line">比如有两个主键，不能存在这样的属性，</span><br><span class="line">它只依赖于其中一个主键，这就是不符合第二范式。</span><br><span class="line">通俗理解是任意一个字段都只依赖表中的同一个字段。</span><br><span class="line">（涉及到表的拆分）</span><br><span class="line">第三范式(<span class="number">3</span>NF)</span><br><span class="line">满足第三范式（<span class="number">3</span>NF）必须先满足第二范式（<span class="number">2</span>NF）。</span><br><span class="line">简而言之，第三范式（<span class="number">3</span>NF）要求一个数据库表中不包含已在其它表中已包含的非主键字段。</span><br><span class="line">就是说，表的信息，如果能够被推导出来，</span><br><span class="line">就不应该单独的设计一个字段来存放(能尽量外键join就用外键join)。</span><br><span class="line">很多时候，我们为了满足第三范式往往会把一张表分成多张表。</span><br><span class="line">即满足第二范式前提，如果某一属性依赖于其他非主键属性，</span><br><span class="line">而其他非主键属性又依赖于主键，那么这个属性就是间接依赖于主键，</span><br><span class="line">这被称作传递依赖于主属性。</span><br><span class="line"> 通俗解释就是一张表最多只存两层同类型信息。</span><br></pre></td></tr></table></figure>
 <h3 id="2-结构化查询语句SQL"><a href="#2-结构化查询语句SQL" class="headerlink" title="2.结构化查询语句SQL"></a>2.结构化查询语句SQL</h3><p>1.SQL结构化查询语句包括数据定于(DDL),数据操作(DML),数据控制(DCL)<br>等功能，其中数据定义处理对象是数据表结构(列)，数据操作对象是表中<br>记录(行)。</p>
-<pre><code class="SQL">select 字段列表 from 关系名(表面) where 查询条件 group by 字段名
-order by __
- select + 聚合函数&#123;
-        sum(字段名)
-        AvG(平均值)
-        MAX(最大值)
- &#125;</code></pre>
-
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> 字段列表 <span class="keyword">from</span> 关系名(表面) <span class="keyword">where</span> 查询条件 <span class="keyword">group</span> <span class="keyword">by</span> 字段名</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> __</span><br><span class="line"> <span class="keyword">select</span> + 聚合函数&#123;</span><br><span class="line">        <span class="keyword">sum</span>(字段名)</span><br><span class="line">        <span class="keyword">AvG</span>(平均值)</span><br><span class="line">        <span class="keyword">MAX</span>(最大值)</span><br><span class="line"> &#125;</span><br><span class="line"><span class="string">``</span><span class="string">` </span></span><br><span class="line"><span class="string">`</span><span class="string">``</span><span class="keyword">SQL</span></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">update</span> <span class="keyword">on</span> 表 <span class="keyword">to</span> <span class="keyword">public</span> </span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -338,13 +331,13 @@ order by __
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
