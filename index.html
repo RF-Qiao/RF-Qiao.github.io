@@ -156,6 +156,131 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fengfeng1.com/2021/12/05/%E5%AE%9E%E8%AE%AD5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/picture.jpg">
+      <meta itemprop="name" content="fengfeng">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fengfeng">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/05/%E5%AE%9E%E8%AE%AD5/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-05 21:47:49 / 修改时间：21:47:30" itemprop="dateCreated datePublished" datetime="2021-12-05T21:47:49+08:00">2021-12-05</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="登录模块的判断"><a href="#登录模块的判断" class="headerlink" title="登录模块的判断"></a>登录模块的判断</h4><h6 id="1-在dao层编写"><a href="#1-在dao层编写" class="headerlink" title="1.在dao层编写"></a>1.在dao层编写</h6><p>​    我们来判断登录时用户名和密码是否正确 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判断用户名和密码是否正确</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> username</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> password</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function">Employee <span class="title">userAndPasswordIsExist</span><span class="params">(<span class="meta">@Param(&quot;username&quot;)</span> String username,</span></span></span><br><span class="line"><span class="function"><span class="params">                                <span class="meta">@Param(&quot;password&quot;)</span> String password)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h6 id="2-在相应的mapper下编写Sql代码"><a href="#2-在相应的mapper下编写Sql代码" class="headerlink" title="2.在相应的mapper下编写Sql代码"></a>2.在相应的mapper下编写Sql代码</h6><p>我们在数据库中查找相应的数据</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;userAndPasswordIsExist&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.feng.pojo.Employee&quot;</span>&gt;</span></span><br><span class="line">    select username,password from project.users where</span><br><span class="line">        username=#&#123;username&#125; AND password=#&#123;password&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="3-在service层编写接口"><a href="#3-在service层编写接口" class="headerlink" title="3.在service层编写接口"></a>3.在service层编写接口</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判断用户名和密码是否正确</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> username</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> password</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function">Employee <span class="title">userAndPasswordIsExist</span><span class="params">( String username,</span></span></span><br><span class="line"><span class="function"><span class="params">                                 String password)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h6 id="4-实现serviceimpl接口"><a href="#4-实现serviceimpl接口" class="headerlink" title="4.实现serviceimpl接口"></a>4.实现serviceimpl接口</h6><p>因为我们实现service接口，所以我们要实现service接口的所有方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Employee <span class="title">userAndPasswordIsExist</span><span class="params">(String username, String password)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> mapper.userAndPasswordIsExist(username,password);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="5-在controller-编写servlet"><a href="#5-在controller-编写servlet" class="headerlink" title="5.在controller 编写servlet"></a>5.在controller 编写servlet</h6><p>如果在数据库中根据用户名和密码查询没有成功，则employee1则为null.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Employee employee1 = empService.userAndPasswordIsExist(username, password);</span><br><span class="line"><span class="keyword">if</span> (employee1==<span class="keyword">null</span>)&#123;</span><br><span class="line">    resp.getWriter().write(<span class="keyword">new</span> Gson().toJson( RespBean.error(<span class="string">&quot;用户名和密码错误&quot;</span>)));</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="6-我们通过apifox测试是否编写成功"><a href="#6-我们通过apifox测试是否编写成功" class="headerlink" title="6.我们通过apifox测试是否编写成功"></a>6.我们通过apifox测试是否编写成功</h6><p>如果我们发送错误的用户名或者密码  那么他会返响应  用户名或密码错误。</p>
+<p><img src="https://gitee.com/f132/picgo/raw/master/202112052047188.png" alt="image-20211205204709842"></p>
+<p><img src="https://gitee.com/f132/picgo/raw/master/202112052048992.png"></p>
+<h4 id="一-增加用户模块"><a href="#一-增加用户模块" class="headerlink" title="一.增加用户模块"></a>一.增加用户模块</h4><h6 id="首先我们还是从dao层编写代码"><a href="#首先我们还是从dao层编写代码" class="headerlink" title="首先我们还是从dao层编写代码"></a>首先我们还是从dao层编写代码</h6><h6 id="1dao层接口编写"><a href="#1dao层接口编写" class="headerlink" title="1dao层接口编写"></a>1dao层接口编写</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 添加客户</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> employee</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addEmployee</span><span class="params">(Employee employee)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h6 id="2-在响应的mapper编写mapper"><a href="#2-在响应的mapper编写mapper" class="headerlink" title="2.在响应的mapper编写mapper"></a>2.在响应的mapper编写mapper</h6><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;insert id=<span class="string">&quot;addEmployee&quot;</span> parameterType=<span class="string">&quot;com.feng.pojo.Employee&quot;</span>&gt;</span><br><span class="line">    insert into</span><br><span class="line">        project.users (id,username,password,gender,mobile,birthday,create_time)</span><br><span class="line">    values</span><br><span class="line">        (null,#&#123;username&#125;,#&#123;password&#125;,#&#123;gender&#125;,#&#123;mobile&#125;,#&#123;birthday&#125;,#&#123;created_time&#125;);</span><br><span class="line">&lt;/insert&gt;</span><br></pre></td></tr></table></figure>
+
+<h6 id="3-编写service层接口"><a href="#3-编写service层接口" class="headerlink" title="3.编写service层接口"></a>3.编写service层接口</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 添加客户</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> employee</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addEmployee</span><span class="params">(Employee employee)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h6 id="4-实现serviceimpl接口-1"><a href="#4-实现serviceimpl接口-1" class="headerlink" title="4.实现serviceimpl接口"></a>4.实现serviceimpl接口</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">addEmployee</span><span class="params">(Employee employee)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span>  mapper.addEmployee(employee);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="5-编写controller"><a href="#5-编写controller" class="headerlink" title="5.编写controller"></a>5.编写controller</h6><p>注释的部分时我们需要增加时判断用户名是否存在，我们稍后会写完这个方法，然后把注释撤掉。</p>
+<p>String authorization = req.getHeader(“Authorization”); 从前端获取authorization 认证</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(name = &quot;Add&quot;,urlPatterns = &quot;/add&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AddController</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    EmployeeServiceImpl empService = <span class="keyword">new</span> EmployeeServiceImpl();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        addEmployee(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//增加用户</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">addEmployee</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">//验证是否为管理员 如果verify==1 可以增加</span></span><br><span class="line">        String authorization = req.getHeader(<span class="string">&quot;Authorization&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (authorization==<span class="keyword">null</span>)&#123;</span><br><span class="line">            resp.getWriter().write(<span class="keyword">new</span> Gson().toJson(RespBean.error(<span class="string">&quot;没有登录，无法增加用户&quot;</span>)));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        String substring = authorization.substring(<span class="number">7</span>);</span><br><span class="line">        Integer verify = TokenUtils.verify(substring);</span><br><span class="line">        <span class="keyword">if</span> (verify==<span class="number">0</span>)&#123;</span><br><span class="line">            resp.getWriter().write(<span class="keyword">new</span> Gson().toJson( RespBean.error(<span class="string">&quot;权限不足&quot;</span>)));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//增加用户信息</span></span><br><span class="line">        String postData = GetDataUtils.getPostData(req);</span><br><span class="line">        Employee employee1 =  <span class="keyword">new</span> Gson().fromJson(postData, Employee.class);</span><br><span class="line"><span class="comment">//        Employee employee2 = empService.userIsExist(employee1.getUsername());</span></span><br><span class="line"><span class="comment">//        if (employee2!=null)&#123;</span></span><br><span class="line"><span class="comment">//            resp.getWriter().write(new Gson().toJson(RespBean.error(&quot;用户名已经存在,无法增加用户&quot;)));</span></span><br><span class="line"><span class="comment">//            return;</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line">        empService.addEmployee(employee1);</span><br><span class="line">        resp.getWriter().write(<span class="keyword">new</span> Gson().toJson(<span class="keyword">new</span> RespBean(<span class="number">200</span>, <span class="string">&quot;增加成功&quot;</span>, <span class="keyword">null</span>)));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="6-我们通过apifox测试是否编写成功-1"><a href="#6-我们通过apifox测试是否编写成功-1" class="headerlink" title="6.我们通过apifox测试是否编写成功"></a>6.我们通过apifox测试是否编写成功</h6><p>因为我们这个用户管理系统，普通的用户肯定不能自主的进行增删改查操作，所以我们首先登录验证他是不是管理员。</p>
+<p>我们首先在数据库中首先定义一个管理员，当role为1时，他就是管理员 当role为0时他是普通用户。</p>
+<p>然后我们以正确管理员方式进行登录，</p>
+<p><img src="https://gitee.com/f132/picgo/raw/master/202112052106231.png" alt="image-20211205210618131"></p>
+<p><img src="https://gitee.com/f132/picgo/raw/master/202112052110850.png" alt="image-20211205211038793"></p>
+<p> 然后我们得到一个data(token) 也就是一个检验是否为管理员。我们前端传递这个token字符串，给后端，在验证是否这个role为0还时1，如果是1 则是一个管理员 如果为0 则是一个普通用户。</p>
+<p><img src="https://gitee.com/f132/picgo/raw/master/202112052111244.png" alt="image-20211205211156152"></p>
+<p>我们把这段字符串通过header，请求给后端</p>
+<p><img src="https://gitee.com/f132/picgo/raw/master/202112052115396.png"></p>
+<p><img src="https://gitee.com/f132/picgo/raw/master/202112052117607.png" alt="image-20211205211703517"></p>
+<p><img src="https://gitee.com/f132/picgo/raw/master/202112052117740.png"></p>
+<p>如果我们发送错误的token  那么就是非管理员 我们会给响应权限不足</p>
+<p><img src="https://gitee.com/f132/picgo/raw/master/202112052124956.png" alt="image-20211205212454865"></p>
+<h6 id="接下来-我们要判断用户名是否存在，如果存在用户名，则管理员不能对员工进行增加。"><a href="#接下来-我们要判断用户名是否存在，如果存在用户名，则管理员不能对员工进行增加。" class="headerlink" title="接下来 我们要判断用户名是否存在，如果存在用户名，则管理员不能对员工进行增加。"></a>接下来 我们要判断用户名是否存在，如果存在用户名，则管理员不能对员工进行增加。</h6><h6 id="dao层编写接口"><a href="#dao层编写接口" class="headerlink" title="dao层编写接口"></a>dao层编写接口</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判断用户名是否存在</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> username</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function">Employee <span class="title">usernameIsExist</span><span class="params">(String username)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h6 id="对应mapper编写"><a href="#对应mapper编写" class="headerlink" title="对应mapper编写"></a>对应mapper编写</h6><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=<span class="string">&quot;usernameIsExist&quot;</span> resultType=<span class="string">&quot;com.feng.pojo.Employee&quot;</span> &gt;</span><br><span class="line">    select * from project.users</span><br><span class="line">    where username =#&#123;username&#125;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<h6 id="service-编写"><a href="#service-编写" class="headerlink" title="service 编写"></a>service 编写</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 检测用户名是否存在</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> username</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function">Employee <span class="title">userIsExist</span><span class="params">(String username)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h6 id="实现ervice接口"><a href="#实现ervice接口" class="headerlink" title="实现ervice接口"></a>实现ervice接口</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Employee <span class="title">userIsExist</span><span class="params">(String username)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> mapper.usernameIsExist(username);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="controller-编写"><a href="#controller-编写" class="headerlink" title="controller 编写"></a>controller 编写</h6><p>刚刚注解掉的部分</p>
+<h6 id="我们通过apifox测试是否编写成功"><a href="#我们通过apifox测试是否编写成功" class="headerlink" title="我们通过apifox测试是否编写成功"></a>我们通过apifox测试是否编写成功</h6><p>这样就判断成功.</p>
+<p><img src="https://gitee.com/f132/picgo/raw/master/202112052137370.png" alt="image-20211205213703280"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://fengfeng1.com/2021/12/03/%E5%AE%9E%E8%AE%AD4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -981,104 +1106,11 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://fengfeng1.com/2020/10/21/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/picture.jpg">
-      <meta itemprop="name" content="fengfeng">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="fengfeng">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/21/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-10-21 16:09:06" itemprop="dateCreated datePublished" datetime="2020-10-21T16:09:06+08:00">2020-10-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-13 17:26:36" itemprop="dateModified" datetime="2021-07-13T17:26:36+08:00">2021-07-13</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>957</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/10/21/hello-world/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1144,7 +1176,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1198,13 +1230,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">29k</span>
+    <span title="站点总字数">33k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">26 分钟</span>
+    <span title="站点阅读时长">30 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
