@@ -181,7 +181,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-02-22 15:54:54 / 修改时间：16:23:11" itemprop="dateCreated datePublished" datetime="2023-02-22T15:54:54+08:00">2023-02-22</time>
+              <time title="创建时间：2023-02-22 15:54:54 / 修改时间：18:03:50" itemprop="dateCreated datePublished" datetime="2023-02-22T15:54:54+08:00">2023-02-22</time>
             </span>
 
           <br>
@@ -190,7 +190,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>33</span>
+              <span>754</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -211,8 +211,37 @@
       
           <meta name="referrer" content="no-referrer" />
 
-<h2 id="Elasticsearch"><a href="#Elasticsearch" class="headerlink" title="Elasticsearch"></a>Elasticsearch</h2><p>定时任务的配置</p>
-<p><img src="https://gitee.com/f132/picgo/raw/master/image-20230222160739982.png"></p>
+<h2 id="Elasticsearch"><a href="#Elasticsearch" class="headerlink" title="Elasticsearch"></a>Elasticsearch</h2><h3 id="es简介"><a href="#es简介" class="headerlink" title="es简介"></a>es简介</h3><ol>
+<li>ES是elaticsearch简写， Elasticsearch是一个开源的高扩展的分布式全文检索引擎，它可以<strong>近乎实时的存储</strong>、检索数据；本身扩展性很好，可以扩展到上百台服务器，处理PB级别的数据。</li>
+<li>Elasticsearch也使用Java开发并使用Lucene作为其核心来实现所有索引和搜索的功能，但是它的目的是通过简单的RESTful API来隐藏Lucene的复杂性，从而让全文搜索变得简单。</li>
+<li>ElasticSearch是一个基于Lucene的搜索服务器。它提供了一个分布式多用户能力的全文搜索引擎，基于RESTful web接口。Elasticsearch是用Java开发的，并作为Apache许可条款下的开放源码发布，是当前流行的企业级搜索引擎</li>
+</ol>
+<h2 id="Elasticsearch安装部署"><a href="#Elasticsearch安装部署" class="headerlink" title="Elasticsearch安装部署"></a>Elasticsearch安装部署</h2><h3 id="一、安装JDK环境"><a href="#一、安装JDK环境" class="headerlink" title="一、安装JDK环境"></a>一、安装JDK环境</h3><ol>
+<li><p>我们登录root用户，在/usr下建立一个java文件夹</p>
+</li>
+<li><p>我们进入java，将下载好的jdk压缩包导入服务器</p>
+</li>
+<li><p>查看上传好的jdk压缩包</p>
+<p><img src="https://gitee.com/f132/picgo/raw/master/image-20230222171322132.png" alt="image-20230222171322132"></p>
+</li>
+<li><p>解压jdk</p>
+</li>
+</ol>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">tar</span> –xzvf jdk-<span class="number">11</span>.<span class="number">0</span>.<span class="number">13</span>_linux-x<span class="number">64</span>_bin.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="JDK的配置"><a href="#JDK的配置" class="headerlink" title="JDK的配置"></a>JDK的配置</h3><ol>
+<li><p>使用vi命令打开系统的环境变量配置文件：</p>
+</li>
+<li><p>在profile文件最后加入</p>
+</li>
+<li><p>使jdk生效</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/profile</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">JAVA_HOME</span>=/usr/java/jdk-11</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$&#123;JAVA_HOME&#125;</span>/bin:$PATH</span><br><span class="line"></span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="搭建elasticsearch"><a href="#搭建elasticsearch" class="headerlink" title="搭建elasticsearch"></a><strong>搭建</strong>elasticsearch</h2><h3 id="解压文件"><a href="#解压文件" class="headerlink" title="解压文件"></a>解压文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/</span><br><span class="line">tar -zxvf elasticsearch-7.15.1-linux-x86_64.tar.gz</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建数据存放路径"><a href="#创建数据存放路径" class="headerlink" title="创建数据存放路径"></a>创建数据存放路径</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /opt/elasticsearch-7.15.1/data </span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/02/22/es/#more" rel="contents">
@@ -893,7 +922,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-13 17:26:36" itemprop="dateModified" datetime="2021-07-13T17:26:36+08:00">2021-07-13</time>
+                <time title="修改时间：2023-02-22 19:02:03" itemprop="dateModified" datetime="2023-02-22T19:02:03+08:00">2023-02-22</time>
               </span>
 
           <br>
@@ -902,14 +931,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>957</span>
+              <span>9.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>9 分钟</span>
             </span>
 
         </div>
@@ -1075,13 +1104,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">18k</span>
+    <span title="站点总字数">27k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">16 分钟</span>
+    <span title="站点阅读时长">25 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
